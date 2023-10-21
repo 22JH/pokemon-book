@@ -64,6 +64,8 @@ function extractEvolutionData(
 }
 
 export default function PokemonEvolution({ index, name }: PropType) {
+  const [isLoading, setIsLoading] = useState(true);
+
   const [evolutionUrl, setEvolutionUrl] = useState<string>("");
   const [evolutionChainData, setEvolutionChainData] = useState<evolutionType[]>(
     []
@@ -109,7 +111,11 @@ export default function PokemonEvolution({ index, name }: PropType) {
               key={evolutionInfo.name}
             >
               <div className="evolution-img">
-                <img src={imgUrl} alt={evolutionInfo.name} />
+                <img
+                  src={isLoading ? imgUrl : "./logo192.png"}
+                  alt={evolutionInfo.name}
+                  onLoad={() => setIsLoading(true)}
+                />
               </div>
               <div className="evolution-name">{evolutionInfo.name}</div>
             </div>

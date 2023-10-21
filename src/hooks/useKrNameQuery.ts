@@ -13,7 +13,6 @@ interface NameInfoType {
 
 export function useKrNameQuery(index: number) {
   const { relaseKrNameIndex, setRelaseKrNameIndex } = useStore();
-
   return useQuery(["pokemonSpecies", index], () => getSpecies(index), {
     staleTime: Infinity,
     select: (res) => {
@@ -22,7 +21,7 @@ export function useKrNameQuery(index: number) {
       });
       return nameInfo[0]?.name;
     },
-    enabled: relaseKrNameIndex > index,
+    enabled: relaseKrNameIndex > index && index > 0,
     onError: (err: AxiosError) => {
       if (err?.response?.status === 404) {
         setRelaseKrNameIndex(index);
