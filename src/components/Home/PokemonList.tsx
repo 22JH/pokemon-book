@@ -13,6 +13,7 @@ import useIntersectionObserver from "../../hooks/useIntersectionObeserver";
 import Pokemon from "./Pokemon";
 import { LIMIT } from "../..//hooks/useApi";
 import Loading from "../Loading";
+import LoadingLogo from "../../assets/LoadingLogo.png";
 
 const pokemonListContainer = css`
   height: auto;
@@ -106,7 +107,7 @@ const PokemonList = () => {
             ))
           )
         : Array.from({ length: LIMIT }).map((_, i) => (
-            <Pokemon name="loading" imgUrl="./logo192.png" index={i} key={i} />
+            <Pokemon name="loading" imgUrl={LoadingLogo} index={i} key={i} />
           ))}
       <div className="target" ref={observeTarget} />
       {isFetchingNextPage && <Loading />}

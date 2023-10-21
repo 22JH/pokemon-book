@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useKrNameQuery } from "../../hooks/useKrNameQuery";
 import useStore from "../../store";
 import { useState } from "react";
+import LoadingLogo from "../../assets/LoadingLogo.png";
 
 const pokemonContainer = css`
   width: 20vw;
@@ -51,17 +52,17 @@ export default function Pokemon({ name, imgUrl, index }: PropType) {
       <img
         src={
           isLoading
-            ? "./logo192.png"
+            ? LoadingLogo
             : index < relaseImgIndex
             ? imgUrl
-            : "./logo192.png"
+            : LoadingLogo
         }
         alt={name}
         onLoad={() => setIsLoading(false)}
         onError={(e) => {
           setRelaseImgIndex(index);
           const target = e.target as HTMLImageElement;
-          target.src = "./logo192.png";
+          target.src = LoadingLogo;
         }}
         loading="lazy"
       />

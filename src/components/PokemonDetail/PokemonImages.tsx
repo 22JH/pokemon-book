@@ -3,6 +3,8 @@ import { css } from "@emotion/react";
 import useStore from "../../store";
 import PokemonsType from "../../types/PokemonsType";
 import { useEffect, useState } from "react";
+import LoadingLogo from "../../assets/LoadingLogo.png";
+import ImageLazyLoading from "../ImageLazyLoading";
 
 const PokemonImagesContainer = css`
   width: 100%;
@@ -57,13 +59,15 @@ export default function PokemonImages({ index, data }: PropType) {
     <div css={PokemonImagesContainer}>
       <div className="current-img">
         <img
-          src={index < relaseImgIndex ? pokemonImgUrl : "./logo192.png"}
+          src={index < relaseImgIndex ? pokemonImgUrl : LoadingLogo}
           alt="pokemon-img"
         />
       </div>
       <div className="img-list">
         {imgUrls?.map((ele: string) => {
-          return <img src={ele} alt={ele} key={ele} />;
+          return (
+            <ImageLazyLoading dataCheck={!!ele} url={ele} alt={ele} key={ele} />
+          );
         })}
       </div>
     </div>

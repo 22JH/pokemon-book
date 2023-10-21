@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import { getEvolutionData, getSpecies } from "../../hooks/useApi";
 import { useNavigate } from "react-router-dom";
 import { SpeciesType } from "../../types/SpeciesType";
+import ImageLazyLoading from "../ImageLazyLoading";
 
 const PokemonEvolutionContainer = css`
   .evolution-list {
@@ -64,8 +65,6 @@ function extractEvolutionData(
 }
 
 export default function PokemonEvolution({ index, name }: PropType) {
-  const [isLoading, setIsLoading] = useState(true);
-
   const [evolutionUrl, setEvolutionUrl] = useState<string>("");
   const [evolutionChainData, setEvolutionChainData] = useState<evolutionType[]>(
     []
@@ -111,10 +110,10 @@ export default function PokemonEvolution({ index, name }: PropType) {
               key={evolutionInfo.name}
             >
               <div className="evolution-img">
-                <img
-                  src={isLoading ? imgUrl : "./logo192.png"}
+                <ImageLazyLoading
+                  dataCheck={!!evolutionInfo}
+                  url={imgUrl}
                   alt={evolutionInfo.name}
-                  onLoad={() => setIsLoading(true)}
                 />
               </div>
               <div className="evolution-name">{evolutionInfo.name}</div>

@@ -32,7 +32,7 @@ export default function PokemonExplain({ index, data }: PropType) {
   return (
     <div css={pokemonExplainContainer}>
       <h1>
-        {data?.name}({krName.data})
+        {data?.name}({krName.isLoading ? "불러오는 중" : krName.data})
       </h1>
       <p>키 : {data?.height / 10}m</p>
       <p>몸무게 : {data?.weight / 10}kg</p>
