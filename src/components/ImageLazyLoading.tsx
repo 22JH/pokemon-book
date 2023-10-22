@@ -9,7 +9,6 @@ interface PropType {
 
 export default function ImageLazyLoading({ dataCheck, url, alt }: PropType) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  console.log(dataCheck);
   return (
     <img
       src={dataCheck ? (isLoading ? LoadingLogo : url) : LoadingLogo}
